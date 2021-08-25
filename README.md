@@ -9,7 +9,7 @@ go版github地址：https://github.com/swaggo/swag
 1. 接口的文档在线自动生成。
 2. 功能测试。
 
-###项目运行
+### 项目运行
 1. `go get all` 下载依赖包
 2. 进入`swagger/app`目录，执行`swag init  -g cmd/main.go  -o ./docs`生成docs文件。
 3. `routers.go` 引入docs目录 
