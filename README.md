@@ -32,7 +32,10 @@ _____
    但是如果 main.go文件和本文示例一样放在cmd目录下，使用上面的命令是无法生成docs文件的。<br>
    <br>
    **解决方案：** 例如我的项目目录（进入到app目录） `C:\code\swagger\app` 执行： <br> 
-    `swag init  -g cmd/main.go  -o ./docs` 就可以成功生成了。
+
+    `swag init  -g cmd/main.go  -o ./docs`  <br> 
+    
+    就可以成功生成了。
     <br>
 2. **路由文件需要引入docs目录** <br>
 
