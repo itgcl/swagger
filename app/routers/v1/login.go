@@ -23,6 +23,11 @@ func Login(c *gin.Context)  {
 		c.Status(http.StatusBadRequest)
 		return
 	}
+	// TODO 模拟测试
+	if request.Username != "zhangsan" || request.Password != "123456" {
+		c.Status(http.StatusUnauthorized)
+		return
+	}
 	reply := dto.ReplyLogin{Token: "123456"}
 	c.JSON(http.StatusOK, reply)
 	return

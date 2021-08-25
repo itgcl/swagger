@@ -1,6 +1,6 @@
 package dto
 
-import "swagger/model"
+import "swagger/app/model"
 
 type RequestStudentCreate struct {
 	Username    string `json:"username" binding:"required" example:"张三"`

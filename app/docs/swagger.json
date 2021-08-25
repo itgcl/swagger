@@ -1,0 +1,387 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "swagger使用示例",
+        "title": "Swagger student_system",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "1111x@qq.com"
+        },
+        "version": "1.0"
+    },
+    "host": "127.0.0.1:8080",
+    "basePath": "/student/api/v1",
+    "paths": {
+        "/create": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "学生管理"
+                ],
+                "summary": "创建",
+                "parameters": [
+                    {
+                        "description": "请求参数",
+                        "name": "{object}",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.RequestStudentCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ReplyStudentCreate"
+                        }
+                    },
+                    "400": {
+                        "description": "参数错误"
+                    },
+                    "401": {
+                        "description": "没有权限"
+                    },
+                    "500": {
+                        "description": "服务器错误"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户"
+                ],
+                "summary": "登录",
+                "parameters": [
+                    {
+                        "description": "请求参数",
+                        "name": "{object}",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.RequestLogin"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ReplyLogin"
+                        }
+                    },
+                    "400": {
+                        "description": "参数错误"
+                    },
+                    "401": {
+                        "description": "没有权限"
+                    },
+                    "500": {
+                        "description": "服务器错误"
+                    }
+                }
+            }
+        },
+        "/{studentID}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "学生管理"
+                ],
+                "summary": "详情",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "学生id",
+                        "name": "studentID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ReplyStudentInfo"
+                        }
+                    },
+                    "400": {
+                        "description": "参数错误"
+                    },
+                    "401": {
+                        "description": "没有权限"
+                    },
+                    "404": {
+                        "description": "访问不存在的信息"
+                    },
+                    "500": {
+                        "description": "服务器错误"
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "tags": [
+                    "学生管理"
+                ],
+                "summary": "删除",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "学生id",
+                        "name": "studentID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "请求成功"
+                    },
+                    "400": {
+                        "description": "参数错误"
+                    },
+                    "401": {
+                        "description": "没有权限"
+                    },
+                    "500": {
+                        "description": "服务器错误"
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "学生管理"
+                ],
+                "summary": "编辑",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "学生id",
+                        "name": "studentID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "请求参数",
+                        "name": "{object}",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.RequestStudentUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "请求成功"
+                    },
+                    "400": {
+                        "description": "参数错误"
+                    },
+                    "401": {
+                        "description": "没有权限"
+                    },
+                    "404": {
+                        "description": "访问不存在的信息"
+                    },
+                    "500": {
+                        "description": "服务器错误"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "dto.ReplyLogin": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string",
+                    "example": "ethgdjkfgbvdig34jh5g4jhbvhj"
+                }
+            }
+        },
+        "dto.ReplyStudentCreate": {
+            "type": "object",
+            "properties": {
+                "studentID": {
+                    "type": "integer",
+                    "example": 1
+                }
+            }
+        },
+        "dto.ReplyStudentInfo": {
+            "type": "object",
+            "required": [
+                "age",
+                "class",
+                "gender",
+                "password",
+                "username"
+            ],
+            "properties": {
+                "age": {
+                    "type": "integer",
+                    "example": 12
+                },
+                "class": {
+                    "type": "integer",
+                    "example": 5
+                },
+                "gender": {
+                    "type": "string",
+                    "example": "女"
+                },
+                "home_address": {
+                    "type": "string",
+                    "example": "上海市闵行区xxx路"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "654321"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "李四"
+                }
+            }
+        },
+        "dto.RequestLogin": {
+            "type": "object",
+            "required": [
+                "password",
+                "username"
+            ],
+            "properties": {
+                "password": {
+                    "type": "string",
+                    "example": "123456"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "zhangsan"
+                }
+            }
+        },
+        "dto.RequestStudentCreate": {
+            "type": "object",
+            "required": [
+                "age",
+                "class",
+                "gender",
+                "password",
+                "username"
+            ],
+            "properties": {
+                "age": {
+                    "type": "integer",
+                    "example": 10
+                },
+                "class": {
+                    "type": "integer",
+                    "example": 5
+                },
+                "gender": {
+                    "type": "string",
+                    "example": "男"
+                },
+                "home_address": {
+                    "type": "string",
+                    "example": "上海市徐汇区xxx路"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "123456"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "张三"
+                }
+            }
+        },
+        "dto.RequestStudentUpdate": {
+            "type": "object",
+            "required": [
+                "age",
+                "class",
+                "gender",
+                "password",
+                "username"
+            ],
+            "properties": {
+                "age": {
+                    "type": "integer",
+                    "example": 12
+                },
+                "class": {
+                    "type": "integer",
+                    "example": 5
+                },
+                "gender": {
+                    "type": "string",
+                    "example": "女"
+                },
+                "home_address": {
+                    "type": "string",
+                    "example": "上海市闵行区xxx路"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "654321"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "李四"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

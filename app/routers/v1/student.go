@@ -41,14 +41,14 @@ func Create(c *gin.Context)  {
 // @Accept json
 // @Produce json
 // @Security ApiKeyAuth
-// @Param studentID path int true "学生ID"
+// @Param studentID path int true "学生id"
 // @Param {object} body dto.RequestStudentUpdate true "请求参数"
 // @Success 204 "请求成功"
 // @Failure 400 "参数错误"
 // @Failure 401 "没有权限"
 // @Failure 404 "访问不存在的信息"
 // @Failure 500 "服务器错误"
-// @Router /update/{serviceId} [patch]
+// @Router /{studentID} [patch]
 func Update(c *gin.Context)  {
 	request := new(dto.RequestStudentUpdate)
 	if err := c.BindJSON(request); err != nil {
@@ -74,13 +74,13 @@ func Update(c *gin.Context)  {
 // @Version 1.0
 // @Produce json
 // @Security ApiKeyAuth
-// @Param StudentID path int true "学生ID"
+// @Param studentID path int true "学生id"
 // @Success 200 {object} dto.ReplyStudentInfo "请求成功"
 // @Failure 400 "参数错误"
 // @Failure 401 "没有权限"
 // @Failure 404 "访问不存在的信息"
 // @Failure 500 "服务器错误"
-// @Router /info/{studentID} [get]
+// @Router /{studentID} [get]
 func Info(c *gin.Context) {
 	studentID, err := strconv.Atoi(c.Param("studentID"))
 	if err != nil {
@@ -109,13 +109,12 @@ func Info(c *gin.Context) {
 // @Tags 学生管理
 // @Version 1.0
 // @Security ApiKeyAuth
-// @Param sourceConfigId path int true "主键id"
-// @Param serviceId path int true "服务id"
+// @Param studentID path int true "学生id"
 // @Success 204 "请求成功"
 // @Failure 400 "参数错误"
 // @Failure 401 "没有权限"
 // @Failure 500 "服务器错误"
-// @Router /delete/{studentID} [delete]
+// @Router /{studentID} [delete]
 func Delete (c *gin.Context)  {
 	studentID, err := strconv.Atoi(c.Param("studentID"))
 	if err != nil {
