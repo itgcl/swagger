@@ -26,7 +26,7 @@ _____
 1. **生成docs文件命令**
    如果解析的`api`目录和`main.go`文件是同级，使用以下命令即可：<br>
    <br>
-   `swag init`
+   `swag init` <br>
    <br>
    但是如果 main.go文件和本文示例一样放在cmd目录下，使用上面的命令是无法生成docs文件的。<br>
    <br>
